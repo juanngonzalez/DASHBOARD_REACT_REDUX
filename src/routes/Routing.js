@@ -15,10 +15,10 @@ const Routing = () => {
 
   const isAuthenticated = auth.authenticated && activeToken;
 
-  axios.defaults.baseURL = "http://localhost:8080/";
+  axios.defaults.baseURL = "dashboardnodeapi-production-2284.up.railway.app/";
 
 
-    return isAuthenticated ? <AuthRoutes data={auth.data} /> : <PublicRoutes />
+  return isAuthenticated ? <div className="authContent"><AuthRoutes data={auth.data} /></div> : <PublicRoutes />
 };
 
 export default Routing;

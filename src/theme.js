@@ -93,7 +93,7 @@ export const tokens = (mode) => ({
           600: "#70d8bd",
           700: "#94e2cd",
           800: "#b7ebde",
-          900: "#dbf5ee",
+          900: "#0FFF20",
         },
         redAccent: {
           100: "#2c100f",
@@ -228,6 +228,7 @@ export const useMode = () => {
           }
         },
       },
+      
     },
   },themeSettings(mode)), [mode]);
   return [theme, colorMode];

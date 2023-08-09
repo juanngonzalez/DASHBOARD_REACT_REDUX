@@ -5,16 +5,19 @@ body,
 #root,
 .app,
 .content {
-  height: 100%;
+  height:100%;
   width: 100%;
   font-family: "Source Sans Pro", sans-serif;
+  overflow: hidden
 }
 
 .app {
   display: flex;
-  position: relative;
 }
-
+.authContent{
+  overflow:scroll;
+  height: 100%;
+}
 ::-webkit-scrollbar {
   width: 0px;
 }
