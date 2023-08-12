@@ -1,6 +1,7 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { tokens } from "../../theme";
+import CardsContainer from "./cardsInformacion/CardsContainer";
 
 const DashBoardContainer = () => {
   const theme = useTheme();
@@ -23,7 +24,6 @@ const DashBoardContainer = () => {
               fontSize: "14px",
               fontWeight: "bold",
               padding: "10px 20px",
-              
             }}
           >
             Download
@@ -34,7 +34,7 @@ const DashBoardContainer = () => {
         variant="h3"
         fontWeight="bold"
         color={colors.greenAccent[900]}
-        borderBottom= {`solid 1px ${colors.greenAccent[900]}`}
+        borderBottom={`solid 1px ${colors.greenAccent[900]}`}
         marginBottom={2}
       >
         New content
@@ -43,31 +43,31 @@ const DashBoardContainer = () => {
       <Box
         display="grid"
         gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="190px"
+        gridAutoRows="220px"
         gap="20px"
       >
         {/* ROW 1 */}
         <Box
-          gridColumn="span 4"
+          gridColumn="span 12"
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
           justifyContent="center"
-        ></Box>
-        <Box
-          gridColumn="span 4"
-          backgroundColor={colors.primary[400]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        ></Box>
-        <Box
-          gridColumn="span 4"
-          backgroundColor={colors.primary[400]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        ></Box>
+          
+        >
+          <CardsContainer data={[
+  { id: 1, nombre: "objeto1", title: "Título 1", caption: "Subtítulo 1", description: "Descripción 1" },
+  { id: 2, nombre: "objeto2", title: "Título 2", caption: "Subtítulo 2", description: "Descripción 2" },
+  { id: 3, nombre: "objeto3", title: "Título 3", caption: "Subtítulo 3", description: "Descripción 3" },
+  { id: 4, nombre: "objeto4", title: "Título 4", caption: "Subtítulo 4", description: "Descripción 4" },
+  { id: 5, nombre: "objeto5", title: "Título 5", caption: "Subtítulo 5", description: "Descripción 5" },
+  { id: 6, nombre: "objeto6", title: "Título 6", caption: "Subtítulo 6", description: "Descripción 6" },
+  { id: 7, nombre: "objeto7", title: "Título 7", caption: "Subtítulo 7", description: "Descripción 7" },
+  { id: 8, nombre: "objeto8", title: "Título 8", caption: "Subtítulo 8", description: "Descripción 8" },
+  { id: 9, nombre: "objeto9", title: "Título 9", caption: "Subtítulo 9", description: "Descripción 9" },
+  { id: 10, nombre: "objeto10", title: "Título 10", caption: "Subtítulo 10", description: "Descripción 10" },
+]} />
+        </Box>
 
         {/* ROW 2 */}
         <Box
