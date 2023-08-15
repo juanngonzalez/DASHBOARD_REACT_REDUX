@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, GET_ACTIVE_TOKEN } from "../actions/auth";
+import { LOGIN, LOGOUT, GET_ACTIVE_TOKEN, CREATE_USER } from "../actions/auth";
 
 const INITIAL_STATE = {
   authenticated: false,
@@ -6,6 +6,11 @@ const INITIAL_STATE = {
   error: false,
   data: {},
   activeToken: {
+    loading: false,
+    error: false,
+    data: {},
+  },
+  createUser: {
     loading: false,
     error: false,
     data: {},
@@ -34,6 +39,26 @@ const auth = (state = INITIAL_STATE, action) => {
         loading: false,
         authenticated: true,
         data: action.payload.data,
+      };
+    case `${CREATE_USER}_PENDING`:
+      return {
+        ...state,
+        createUser: { ...state.createUser, error: false, loading: true },
+      };
+    case `${CREATE_USER}_REJECTED`:
+      return {
+        ...state,
+        createUser: { ...state.createUser, error: true, loading: false },
+      };
+    case `${CREATE_USER}_FULFILLED`:
+      return {
+        ...state,
+        createUser: {
+          ...state.createUser,
+          error: false,
+          loading: false,
+          data: action.payload.data,
+        },
       };
     case `${GET_ACTIVE_TOKEN}_PENDING`:
       return {

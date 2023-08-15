@@ -12,11 +12,11 @@ import {
 import { tokens } from "../../../theme";
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = (colors, isAnimating) =>
+const useStyles = (colors) =>
   makeStyles((theme) => ({
     card: {
       borderRadius: "5px 5px 25px 5px",
-      backgroundColor: colors.blueAccent[900],
+      background: `linear-gradient(to right, ${colors.primary[700]}, ${colors.primary[500]})`,
       boxShadow: "5px 5px 20px 0px",
     },
     cardContent: {
@@ -24,7 +24,7 @@ const useStyles = (colors, isAnimating) =>
       height: 155,
     },
   }));
-const CardsContainer = ({ data }) => {
+const CardsContainer = ({ data, setSelectedCard }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [dataState, setData] = useState([]); // Estado para almacenar los datos del endpoint
@@ -32,7 +32,7 @@ const CardsContainer = ({ data }) => {
   const [counter, setCounter] = useState(0);
   const groupSize = 3;
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [direction, setDirection] = useState(0); // 1 para deslizamiento hacia la izquierda, -1 para deslizamiento hacia la derecha
+  const [direction, setDirection] = useState(0); // 0 para deslizamiento hacia la izquierda, 1 para deslizamiento hacia la derecha
 
   const classes = useStyles(colors)(); // Aplicamos los estilos
 
@@ -41,7 +41,6 @@ const CardsContainer = ({ data }) => {
       setData(data);
       setCounter(0);
     }
-    console.log(data);
   }, [data]);
 
   useEffect(() => {
@@ -54,10 +53,6 @@ const CardsContainer = ({ data }) => {
       setGroupedData(groupedArray);
     }
   }, [dataState]);
-
-  useEffect(() => {
-    console.log(groupedData);
-  }, [groupedData]);
 
   const handleNext = () => {
     setIsTransitioning(true);
@@ -74,7 +69,7 @@ const CardsContainer = ({ data }) => {
   };
 
   return (
-    <Grid  container spacing={2} padding={2} style={{overFlow: "hidden"}}>
+    <Grid container spacing={2} padding={2} style={{ overFlow: "hidden" }}>
       {!groupedData.length ? (
         <CircularProgress />
       ) : (
@@ -82,10 +77,10 @@ const CardsContainer = ({ data }) => {
           {groupedData[counter].map((e) => (
             <Grid
               style={{
-                transform: `translateX(${direction * 100}%)`,
+                transform: `translateX(-${direction * 100}%)`,
                 transition: isTransitioning
                   ? "transform 0.10s ease-in-out"
-                  : "transform 0.10s ease-in-out"
+                  : "transform 0.10s ease-in-out",
               }}
               item
               xs={4}
@@ -143,6 +138,9 @@ const CardsContainer = ({ data }) => {
                         margin: "38px -5px 15px 5px",
                       }}
                       color="secondary"
+                      onClick={() => {
+                        setSelectedCard(e);
+                      }}
                     >
                       See more
                     </Button>
@@ -153,7 +151,6 @@ const CardsContainer = ({ data }) => {
           ))}
         </>
       )}
-
       <Grid item xs={12} display="flex" justifyContent="flex-end">
         <Button variant="contained" onClick={handleNext}>
           Next
