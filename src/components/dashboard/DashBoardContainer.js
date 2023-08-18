@@ -2,10 +2,10 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import { tokens } from "../../theme";
 import CardsContainer from "./cardsInformacion/CardsContainer";
-import CardsDetails from "./cardsDetail/CardDetail";
 import { useEffect } from "react";
 import CardDetail from "./cardsDetail/CardDetail";
-
+import RadarChart from "./charts/RadarChart";
+import RecentMeals from "./recentMeals/RecentMeals"
 const DashBoardContainer = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -172,53 +172,16 @@ const DashBoardContainer = () => {
             {/* ROW 2 */}
             <Box
               gridColumn="span 8"
-              gridRow="span 2"
+              gridRow="span 3"
               backgroundColor={colors.primary[400]}
             >
-              <Box
-                mt="25px"
-                p="0 30px"
-                display="flex "
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <Box>
-                  <Typography
-                    variant="h5"
-                    fontWeight="600"
-                    color={colors.grey[100]}
-                  >
-                    Protein
-                  </Typography>
-                  <Typography
-                    variant="h3"
-                    fontWeight="bold"
-                    color={colors.greenAccent[500]}
-                  >
-                    78,6
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    fontWeight="600"
-                    color={colors.grey[100]}
-                  >
-                    Burned calories
-                  </Typography>
-                  <Typography
-                    variant="h3"
-                    fontWeight="bold"
-                    color={colors.greenAccent[500]}
-                  >
-                    723,6
-                  </Typography>
-                </Box>
-                <Box></Box>
+              <Box height="100%">
+                <RadarChart />
               </Box>
-              <Box height="250px" m="-20px 0 0 0"></Box>
             </Box>
             <Box
               gridColumn="span 4"
-              gridRow="span 2"
+              gridRow="span 3"
               backgroundColor={colors.primary[400]}
               overflow="auto"
             >
@@ -235,9 +198,10 @@ const DashBoardContainer = () => {
                   variant="h5"
                   fontWeight="600"
                 >
-                  Recent
+                  Recent meals
                 </Typography>
               </Box>
+              <RecentMeals />
             </Box>
 
             {/* ROW 3 */}
